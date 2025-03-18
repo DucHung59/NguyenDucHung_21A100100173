@@ -5,7 +5,7 @@ public class Food {
     private String name;
     private double price;
     private String unit;
-    private int imageResourceId;  // Resource ID for drawable images
+    private int imageResourceId;
 
     public Food() {
     }

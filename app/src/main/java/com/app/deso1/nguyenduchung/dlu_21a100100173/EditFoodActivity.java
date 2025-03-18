@@ -25,13 +25,10 @@ public class EditFoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_food);
 
-        // Set the title of the activity
         setTitle(R.string.edit_food);
 
-        // Initialize database helper
         dbHelper = new DatabaseHelper(this);
 
-        // Initialize views
         tvFoodId = findViewById(R.id.tv_food_id_value);
         etFoodName = findViewById(R.id.et_food_name);
         etFoodPrice = findViewById(R.id.et_food_price);
@@ -41,7 +38,6 @@ public class EditFoodActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btn_cancel);
         btnDelete = findViewById(R.id.btn_delete);
 
-        // Get food ID from intent
         foodId = getIntent().getStringExtra("FOOD_ID");
         if (foodId == null) {
             Toast.makeText(this, "Lỗi: Không có mã món ăn", Toast.LENGTH_SHORT).show();
@@ -49,22 +45,16 @@ public class EditFoodActivity extends AppCompatActivity {
             return;
         }
 
-        // Load food data
         loadFoodData();
 
-        // Image selection (simplified for this example)
         ivFoodImage.setOnClickListener(v -> {
-            // In a real app, you would launch an image picker here
             Toast.makeText(this, "Image selection would open here", Toast.LENGTH_SHORT).show();
         });
 
-        // Save button click listener
         btnSave.setOnClickListener(v -> updateFood());
 
-        // Delete button click listener
         btnDelete.setOnClickListener(v -> confirmDelete());
 
-        // Cancel button click listener
         btnCancel.setOnClickListener(v -> finish());
     }
 
@@ -76,7 +66,6 @@ public class EditFoodActivity extends AppCompatActivity {
             return;
         }
 
-        // Display food data
         tvFoodId.setText(currentFood.getId());
         etFoodName.setText(currentFood.getName());
         etFoodPrice.setText(String.valueOf(currentFood.getPrice()));
@@ -85,18 +74,15 @@ public class EditFoodActivity extends AppCompatActivity {
     }
 
     private void updateFood() {
-        // Get input values
         String name = etFoodName.getText().toString().trim();
         String priceStr = etFoodPrice.getText().toString().trim();
         String unit = etFoodUnit.getText().toString().trim();
 
-        // Validate input
         if (name.isEmpty() || priceStr.isEmpty() || unit.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Parse price
         double price;
         try {
             price = Double.parseDouble(priceStr);
@@ -105,13 +91,10 @@ public class EditFoodActivity extends AppCompatActivity {
             return;
         }
 
-        // Update Food object
         currentFood.setName(name);
         currentFood.setPrice(price);
         currentFood.setUnit(unit);
-        // Image resource stays the same for simplicity
 
-        // Update in database
         int result = dbHelper.updateFood(currentFood);
 
         if (result > 0) {

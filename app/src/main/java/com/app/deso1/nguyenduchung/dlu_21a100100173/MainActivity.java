@@ -25,17 +25,13 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize database helper
         dbHelper = new DatabaseHelper(this);
 
-        // Set up RecyclerView
         recyclerView = findViewById(R.id.rv_foods);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Load food data
         loadFoodData();
 
-        // Set up Floating Action Button for adding new food
         FloatingActionButton fab = findViewById(R.id.fab_add_food);
         fab.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, AddFoodActivity.class);
@@ -46,15 +42,12 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onResume() {
         super.onResume();
-        // Reload data when returning to this activity
         loadFoodData();
     }
 
     private void loadFoodData() {
-        // Get all foods from database
         foodList = dbHelper.getAllFoods();
 
-        // Initialize adapter or update existing one
         if (foodAdapter == null) {
             foodAdapter = new FoodAdapter(this, foodList);
             recyclerView.setAdapter(foodAdapter);
@@ -74,7 +67,6 @@ public class MainActivity extends AppCompatActivity{
         int id = item.getItemId();
 
         if (id == R.id.action_about) {
-            // Show about information
             return true;
         }
 

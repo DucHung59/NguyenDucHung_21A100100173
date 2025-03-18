@@ -40,12 +40,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_FOODS);
 
-        // Insert sample data
         insertSampleData(db);
     }
 
     private void insertSampleData(SQLiteDatabase db) {
-        // Sample food data
         ContentValues food1 = new ContentValues();
         food1.put(KEY_ID, "F001");
         food1.put(KEY_NAME, "Phở bò");
@@ -67,7 +65,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         food3.put(KEY_UNIT, "Phần");
         food3.put(KEY_IMAGE, R.drawable.bun_cha);
 
-        // Insert into database
         db.insert(TABLE_FOODS, null, food1);
         db.insert(TABLE_FOODS, null, food2);
         db.insert(TABLE_FOODS, null, food3);
@@ -107,14 +104,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rowsAffected;
     }
 
-    // Delete a food
     public void deleteFood(String foodId) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FOODS, KEY_ID + " = ?", new String[]{foodId});
         db.close();
     }
 
-    // Get a single food
     @SuppressLint("Range")
     public Food getFood(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -134,7 +129,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return food;
     }
 
-    // Get all foods
     @SuppressLint("Range")
     public List<Food> getAllFoods() {
         List<Food> foodList = new ArrayList<>();
