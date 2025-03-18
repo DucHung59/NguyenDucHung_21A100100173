@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">21A100100173_NguyenDucHung</string>
+    <string name="app_name">Nguyễn Đức Hưng (21A100100173) - Đề số 1</string>
+    <string name="add_food">Thêm món ăn</string>
+    <string name="edit_food">Sửa món ăn</string>
+    <string name="food_id">Mã món ăn</string>
+    <string name="food_name">Tên món ăn</string>
+    <string name="food_price">Giá</string>
+    <string name="food_unit">Đơn vị tính</string>
+    <string name="food_image">Hình ảnh</string>
+    <string name="save">Lưu</string>
+    <string name="cancel">Hủy</string>
+    <string name="delete">Xóa</string>
+    <string name="enter_food_id">Nhập mã món ăn</string>
+    <string name="enter_food_name">Nhập tên món ăn</string>
+    <string name="enter_food_price">Nhập giá</string>
+    <string name="enter_food_unit">Nhập đơn vị tính</string>
+    <string name="select_image">Chọn hình ảnh</string>
 </resources>
